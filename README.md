@@ -91,8 +91,43 @@ The "bounce" in the data proves we weren't just doing math—we were wrestling w
 We successfully trained a neural network where the forward pass happened inside a quantum computer.
 *   **Was it faster than a classical computer?** No, not for 2 qubits.
 *   **Was it accurate?** It was noisy.
-*   **Was it revolutionary?** Yes.
 
+
+**optimizing a function**. In fact, that is the most accurate mathematical definition of what we just did.
+
+Here is the breakdown of what exactly was "trained" and "optimized" in experiment, using simple terms.
 We demonstrated that we can control quantum states to minimize a loss function. As chips like `ibm_torino` scale from 133 qubits to 10,000, and as error correction improves, this same code will/can solve problems (like protein folding or climate modeling) that are impossible for classical logic.
 
-**Welcome to the Quantum Age.**
+
+
+
+### 1. What are we optimizing? (The Cost Function)
+We are optimizing a **Cost Function** (also called a Loss Function).
+*   **The Function:** $f(\text{error}) = (\text{Prediction} - \text{Target})^2$
+*   **The Goal:** Find the lowest possible value (minimum error).
+*   **In your experiment:** You wanted the quantum computer to output the number `1.0`.
+    *   If it output `0.5`, the error (cost) was high.
+    *   If it output `0.9`, the error was low.
+    *   **Optimization** is the process of sliding down the curve until the error hits zero (or as close as possible).
+
+### 2. What are we training? (The Angles)
+In a classical Neural Network, you train "weights" (numbers in a matrix).
+In a Quantum Neural Network, you train **Physical Rotations**.
+
+*   Look at your code: `qml.RY(weights[0], wires=0)`
+*   **The "Weight":** This isn't just a multiplier. It is an **angle of rotation** (in radians).
+*   **The Physical Reality:** When the optimizer updates `weights[0]`, it is literally telling the microwave pulse generator: *"Tilt the qubit slightly more to the right."*
+
+**So, you are training the physical orientation of atoms (qubits) to align with a mathematical answer.**
+
+
+> **Q: What are we actually optimizing?**
+>
+> **A:** We are optimizing a **Cost Function**. Imagine a landscape of hills and valleys, where the hills represent "Wrong Answers" (high error) and the deepest valley represents the "Right Answer" (zero error).
+>
+> In our experiment, the "Function" is the map of this landscape. Our Quantum AI starts at a random spot on a hill. We use a mathematical compass (Gradient Descent) to find the path down.
+>
+> **Q: What are we training?**
+>
+> **A:** We are training **Rotation Angles**.
+> In a standard computer, software updates a variable in memory. In our Quantum AI, the "variable" is the physical tilt of a qubit. When our code says `Updated Weights`, we are literally adjusting the angle of a subatomic particle so that when we measure it, it gives us the answer we want. We are tuning the geometry of the qubit to solve our problem.
